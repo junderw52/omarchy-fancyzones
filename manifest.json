@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "josh.zones",
+  "name": "Zones",
+  "version": "0.2.0",
+  "author": "josh",
+  "description": "FancyZones-style window snapping with a zone editor. Hyprland side: hypr/zones.lua.",
+  "kinds": [
+    "panel"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "panel": "Zones.qml"
+  }
+}
