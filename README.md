@@ -6,7 +6,17 @@ FancyZones-style window snapping for Omarchy.
 - **Super + Shift + Z** opens the zone editor on the focused monitor.
 - **Super + drag** still moves windows freely.
 
+![Dragging a window with Super + Shift: zones appear and the one under the cursor lights up](screenshots/drag-overlay.png)
+*Super + Shift + drag shows the zones; release to snap into the highlighted one.*
+
+![Three windows snapped into a 25 / 50 / 25 layout on a 32:9 ultrawide](screenshots/snapped.png)
+*Snapped into the Focus (25 / 50 / 25) layout on a 5120×1440 ultrawide.*
+
 ## Editor
+
+![The zone editor over the same layout, with split and remove buttons on the hovered zone](screenshots/editor.png)
+
+![Editor toolbar: presets, gap, new-windows-floating switch, Cancel and Save](screenshots/editor-toolbar.png)
 
 - Pick a preset, or drag the lines between zones to resize them.
 - Hover a zone to split it side by side, split it top / bottom, or remove it.
