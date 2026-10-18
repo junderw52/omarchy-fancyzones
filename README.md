@@ -1,6 +1,9 @@
-# Zones
+# Omarchy FancyZones
 
-FancyZones-style window snapping for Omarchy.
+FancyZones-style window snapping and a zone editor for [Omarchy](https://omarchy.org)
+(Hyprland). A PowerToys FancyZones alternative for Linux: define zones once, then
+drag windows into them. Built for ultrawides, where tiling every window across 32:9
+is too wide, but works on any monitor.
 
 - **Super + Shift + drag** a window to show the zones; release over one to snap into it.
 - **Super + Shift + Z** opens the zone editor on the focused monitor.
@@ -20,7 +23,7 @@ FancyZones-style window snapping for Omarchy.
 
 - Pick a preset, or drag the lines between zones to resize them.
 - Hover a zone to split it side by side, split it top / bottom, or remove it.
-- Set the gap between zones and whether new windows open floating.
+- Set the gap between zones and whether new windows open floating (off by default).
 - **Enter** or **Save** writes the layout; **Esc** or **Cancel** discards it.
 
 Layouts are saved per monitor (by output name, e.g. `HDMI-A-1`), and the
@@ -50,6 +53,19 @@ first one saved also becomes the `default` used by monitors without their own.
    ```
 
 3. Check it with `hyprctl configerrors`.
+
+No other dependencies: it uses the Omarchy shell and Hyprland's Lua config.
+
+## Remove
+
+1. Delete the `dofile(...)` line from `~/.config/hypr/hyprland.lua`.
+2. Remove the plugin:
+
+   ```sh
+   omarchy plugin remove fancyzones
+   ```
+
+3. Optionally delete your saved layouts: `rm ~/.config/omarchy/zones.json`.
 
 The plugin is `keepLoaded`, so changes to `Zones.qml` need `omarchy restart shell`.
 Set `"debug": true` in `zones.json` to log drags to `~/.local/state/hypr-zones.log`.

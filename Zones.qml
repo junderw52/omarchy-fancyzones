@@ -26,7 +26,7 @@ Item {
   property var area: ({ x: 0, y: 0, w: 0, h: 0 })
   property var columns: ZoneModel.defaultLayout()
   property int gap: 8
-  property bool floatAll: true
+  property bool floatAll: false
   property var savedConfig: ({})
 
   readonly property var editorZones: ZoneModel.zones(root.columns, { x: 0, y: 0, w: root.area.w, h: root.area.h }, root.gap)
@@ -59,7 +59,7 @@ Item {
     var layout = layouts[root.monitor] || layouts["default"]
     root.columns = ZoneModel.sanitize(layout && layout.columns)
     root.gap = root.savedConfig.gap !== undefined ? Number(root.savedConfig.gap) : 8
-    root.floatAll = root.savedConfig.floatAll !== false
+    root.floatAll = root.savedConfig.floatAll === true
     root.opened = true
   }
 

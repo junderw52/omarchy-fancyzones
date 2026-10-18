@@ -15,7 +15,7 @@ local config_path = home .. "/.config/omarchy/zones.json"
 local log_path = home .. "/.local/state/hypr-zones.log"
 
 local defaults = {
-  floatAll = true,
+  floatAll = false,
   gap = 8,
   debug = false,
   layouts = {
@@ -151,7 +151,7 @@ local function load_config()
   end
 
   return {
-    floatAll = parsed.floatAll ~= false,
+    floatAll = parsed.floatAll == true,
     gap = tonumber(parsed.gap) or defaults.gap,
     debug = parsed.debug == true,
     layouts = type(parsed.layouts) == "table" and parsed.layouts or defaults.layouts,
