@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "josh.zones",
+  "id": "fancyzones",
   "name": "Zones",
   "version": "0.2.0",
-  "author": "josh",
+  "author": "junderw52",
   "description": "FancyZones-style window snapping with a zone editor. Hyprland side: hypr/zones.lua.",
   "kinds": [
     "panel"

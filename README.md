@@ -28,7 +28,7 @@ first one saved also becomes the `default` used by monitors without their own.
 
 ## Install
 
-1. Add and enable the plugin (it installs to `~/.config/omarchy/plugins/josh.zones/`):
+1. Add and enable the plugin (it installs to `~/.config/omarchy/plugins/fancyzones/`):
 
    ```sh
    omarchy plugin add https://github.com/junderw52/omarchy-fancyzones.git --enable
@@ -36,7 +36,7 @@ first one saved also becomes the `default` used by monitors without their own.
 2. Load the Hyprland side from `~/.config/hypr/hyprland.lua`:
 
    ```lua
-   dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/josh.zones/hypr/zones.lua")
+   dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/fancyzones/hypr/zones.lua")
    ```
 
 3. Check it with `hyprctl configerrors`.

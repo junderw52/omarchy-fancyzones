@@ -8,7 +8,7 @@
 -- editor. They're re-read at the start of every drag, so edits apply
 -- immediately. Load this file from ~/.config/hypr/hyprland.lua with:
 --
---   dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/josh.zones/hypr/zones.lua")
+--   dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/fancyzones/hypr/zones.lua")
 
 local home = os.getenv("HOME") or ""
 local config_path = home .. "/.config/omarchy/zones.json"
@@ -351,7 +351,7 @@ local function edit()
     area.w,
     area.h
   )
-  hl.exec_cmd("omarchy-shell -q shell summon josh.zones " .. shell_quote(payload))
+  hl.exec_cmd("omarchy-shell -q shell summon fancyzones " .. shell_quote(payload))
 end
 
 poll_timer = hl.timer(poll, { timeout = 30, type = "repeat" })

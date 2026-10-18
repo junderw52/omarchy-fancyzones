@@ -8,7 +8,7 @@ import "ZoneModel.js" as ZoneModel
 
 // Zones plugin: the overlay shown while dragging a window (driven over the
 // `zones` IPC target by hypr/zones.lua) and the zone editor (summoned with
-// `omarchy-shell shell summon josh.zones '<payload>'`, bound to SUPER+SHIFT+Z).
+// `omarchy-shell shell summon fancyzones '<payload>'`, bound to SUPER+SHIFT+Z).
 Item {
   id: root
 
@@ -116,7 +116,7 @@ Item {
     screen: root.screenFor(root.dragMonitor)
     anchors { top: true; bottom: true; left: true; right: true }
     color: "transparent"
-    WlrLayershell.namespace: "josh-zones"
+    WlrLayershell.namespace: "fancyzones"
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     exclusionMode: ExclusionMode.Ignore
@@ -160,7 +160,7 @@ Item {
     screen: root.screenFor(root.monitor)
     anchors { top: true; bottom: true; left: true; right: true }
     color: Util.alpha(Color.background, 0.85)
-    WlrLayershell.namespace: "josh-zones-editor"
+    WlrLayershell.namespace: "fancyzones-editor"
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
     exclusionMode: ExclusionMode.Ignore
