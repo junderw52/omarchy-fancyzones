@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "fancyzones",
-  "name": "Zones",
-  "version": "0.2.0",
+  "name": "FancyZones",
+  "version": "0.3.0",
   "author": "junderw52",
   "description": "FancyZones-style window snapping with a zone editor. Hyprland side: hypr/zones.lua.",
   "kinds": [
