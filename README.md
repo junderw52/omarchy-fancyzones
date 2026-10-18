@@ -28,8 +28,11 @@ first one saved also becomes the `default` used by monitors without their own.
 
 ## Install
 
-1. Put this directory at `~/.config/omarchy/plugins/josh.zones/` and run
-   `omarchy plugin enable josh.zones`.
+1. Add and enable the plugin (it installs to `~/.config/omarchy/plugins/josh.zones/`):
+
+   ```sh
+   omarchy plugin add https://github.com/junderw52/omarchy-fancyzones.git --enable
+   ```
 2. Load the Hyprland side from `~/.config/hypr/hyprland.lua`:
 
    ```lua
@@ -40,3 +43,7 @@ first one saved also becomes the `default` used by monitors without their own.
 
 The plugin is `keepLoaded`, so changes to `Zones.qml` need `omarchy restart shell`.
 Set `"debug": true` in `zones.json` to log drags to `~/.local/state/hypr-zones.log`.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
