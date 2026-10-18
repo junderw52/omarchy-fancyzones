@@ -73,6 +73,7 @@ Item {
     cfg.layouts = cfg.layouts || {}
     cfg.layouts[root.monitor] = { columns: root.columns }
     if (!cfg.layouts["default"]) cfg.layouts["default"] = { columns: root.columns }
+    // blockWrites makes setText finish before Hyprland re-reads the file.
     configFile.setText(JSON.stringify(cfg, null, 2) + "\n")
     Quickshell.execDetached(["hyprctl", "eval", "Zones.reload()"])
     root.close()
@@ -82,8 +83,12 @@ Item {
     id: configFile
     path: root.configPath
     blockLoading: true
+    blockWrites: true
     atomicWrites: true
     printErrors: false
+    // Pick up hand edits so the editor never saves over them with stale values.
+    watchChanges: true
+    onFileChanged: reload()
   }
 
   IpcHandler {
