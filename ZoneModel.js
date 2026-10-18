@@ -84,27 +84,29 @@ function round(value) {
 
 // Move the divider between `list[i]` and `list[i + 1]` to `edge` (a fraction
 // measured from the start of the list), keeping both sides above the minimum.
-function moveEdge(list, i, edge) {
+// `snap` rounds to whole percents; leave it off while dragging so the divider
+// follows the pointer, and snap once it's dropped.
+function moveEdge(list, i, edge, snap) {
   var start = 0
   for (var k = 0; k < i; k++) start += list[k]
   var pair = list[i] + list[i + 1]
   var first = Math.min(Math.max(edge - start, MIN_FRACTION), pair - MIN_FRACTION)
-  first = round(Math.round(first * 100) / 100)
+  first = snap ? round(Math.round(first * 100) / 100) : round(first)
   list[i] = first
   list[i + 1] = round(pair - first)
 }
 
-function moveColumnEdge(columns, i, edge) {
+function moveColumnEdge(columns, i, edge, snap) {
   var next = clone(columns)
   var widths = next.map(function (c) { return c.width })
-  moveEdge(widths, i, edge)
+  moveEdge(widths, i, edge, snap)
   for (var c = 0; c < next.length; c++) next[c].width = widths[c]
   return next
 }
 
-function moveRowEdge(columns, c, i, edge) {
+function moveRowEdge(columns, c, i, edge, snap) {
   var next = clone(columns)
-  moveEdge(next[c].rows, i, edge)
+  moveEdge(next[c].rows, i, edge, snap)
   return next
 }
 

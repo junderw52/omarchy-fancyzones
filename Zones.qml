@@ -187,13 +187,15 @@ Item {
       width: root.area.w
       height: root.area.h
 
+      // Repeaters here use counts, not arrays: an array model is rebuilt on
+      // every change to root.columns, which destroys the divider being dragged.
       Repeater {
-        model: root.editorZones
+        model: root.editorZones.length
 
         Rectangle {
           id: zone
-          required property var modelData
           required property int index
+          readonly property var modelData: root.editorZones[index] || ({ column: 0, row: 0, x: 0, y: 0, w: 0, h: 0 })
           readonly property var column: root.columns[modelData.column]
           readonly property bool canRemove: root.editorZones.length > 1
 
@@ -261,12 +263,12 @@ Item {
 
       // Dividers between columns: drag to resize the columns on either side.
       Repeater {
-        model: ZoneModel.columnEdges(root.columns)
+        model: Math.max(0, root.columns.length - 1)
 
         Rectangle {
           id: columnDivider
-          required property real modelData
           required property int index
+          readonly property real modelData: ZoneModel.columnEdges(root.columns)[index] || 0
 
           width: Math.max(root.gap, Style.space(10))
           height: canvas.height - 2 * root.gap
@@ -283,31 +285,32 @@ Item {
             hoverEnabled: true
             preventStealing: true
             cursorShape: Qt.SplitHCursor
-            onPositionChanged: function(mouse) {
-              if (!pressed) return
+            function moveTo(mouse, snap) {
               var p = mapToItem(canvas, mouse.x, mouse.y)
-              root.columns = ZoneModel.moveColumnEdge(root.columns, columnDivider.index, (p.x - root.gap) / root.innerW)
+              root.columns = ZoneModel.moveColumnEdge(root.columns, columnDivider.index, (p.x - root.gap) / root.innerW, snap)
             }
+            onPositionChanged: function(mouse) { if (pressed) moveTo(mouse, false) }
+            onReleased: function(mouse) { moveTo(mouse, true) }
           }
         }
       }
 
       // Dividers between rows inside each column.
       Repeater {
-        model: root.columns
+        model: root.columns.length
 
         Item {
           id: columnRows
-          required property var modelData
           required property int index
+          readonly property var modelData: root.columns[index] || ZoneModel.col(0)
 
           Repeater {
-            model: ZoneModel.rowEdges(columnRows.modelData)
+            model: Math.max(0, columnRows.modelData.rows.length - 1)
 
             Rectangle {
               id: rowDivider
-              required property real modelData
               required property int index
+              readonly property real modelData: ZoneModel.rowEdges(columnRows.modelData)[index] || 0
 
               readonly property real columnStart: columnRows.index === 0 ? 0 : ZoneModel.columnEdges(root.columns)[columnRows.index - 1]
 
@@ -325,11 +328,12 @@ Item {
                 hoverEnabled: true
                 preventStealing: true
                 cursorShape: Qt.SplitVCursor
-                onPositionChanged: function(mouse) {
-                  if (!pressed) return
+                function moveTo(mouse, snap) {
                   var p = mapToItem(canvas, mouse.x, mouse.y)
-                  root.columns = ZoneModel.moveRowEdge(root.columns, columnRows.index, rowDivider.index, (p.y - root.gap) / root.innerH)
+                  root.columns = ZoneModel.moveRowEdge(root.columns, columnRows.index, rowDivider.index, (p.y - root.gap) / root.innerH, snap)
                 }
+                onPositionChanged: function(mouse) { if (pressed) moveTo(mouse, false) }
+                onReleased: function(mouse) { moveTo(mouse, true) }
               }
             }
           }
